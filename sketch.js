@@ -76,7 +76,7 @@ class wall {
   
   function draw() {
     background("#00ffff");
-    if (keyIsDown(UP_ARROW)) {
+    if (keyIsDown(UP_ARROW) || (touches.length>0 && touches[0].y<height/2)) {
       x += sin(radians(r))*(60/getFrameRate());
       y += cos(radians(r))*(60/getFrameRate());
       if (TW(x, y)) {
@@ -92,10 +92,10 @@ class wall {
         y += cos(radians(r))*(60/getFrameRate());
       }
     }
-    if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(RIGHT_ARROW) || (touches.length>0 && touches[0].y>height/2 && touches[0].x>width/2)) {
       r+=(30/getFrameRate());
     }
-    if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(LEFT_ARROW) || (touches.length>0 && touches[0].y>height/2 && touches[0].x<width/2)) {
       r-=(30/getFrameRate());
     }
     rayCast(x, y, r);
